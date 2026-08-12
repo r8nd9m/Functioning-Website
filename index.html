@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="icon" type="image/png" href="Favicon.png">
+<head>
+
+<link rel="icon" src="image/png" href="Favicon.png">
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>Spin & Guess</title>
 
@@ -16,68 +20,40 @@
 
 * {
     box-sizing: border-box;
-}
-
-html, body {
     margin: 0;
     padding: 0;
-    width: 100%;
-    min-height: 100%;
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    overflow-x: hidden;
+
+    min-height: 100vh;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
     background:
         radial-gradient(
-            circle at 50% -20%,
-            #493080 0%,
-            #17132d 30%,
-            #080914 70%
+            circle at 50% 20%,
+            #30205c 0%,
+            #15132c 35%,
+            #090914 75%
         );
 
-    min-height: 100vh;
+    color: white;
+
+    overflow-x: hidden;
+
 }
 
 
 /* =========================================================
-   BACKGROUND DECORATION
+   BACKGROUND
 ========================================================= */
 
 body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
 
-    background-image:
-        linear-gradient(
-            rgba(255,255,255,.025) 1px,
-            transparent 1px
-        ),
-        linear-gradient(
-            90deg,
-            rgba(255,255,255,.025) 1px,
-            transparent 1px
-        );
-
-    background-size: 45px 45px;
-
-    pointer-events: none;
-
-    mask-image:
-        linear-gradient(
-            to bottom,
-            black,
-            transparent
-        );
-
-    z-index: -3;
-}
-
-
-body::after {
     content: "";
 
     position: fixed;
@@ -85,43 +61,66 @@ body::after {
     width: 600px;
     height: 600px;
 
-    left: 50%;
-    top: 45%;
-
-    transform:
-        translate(-50%, -50%);
-
-    border-radius: 50%;
+    left: -200px;
+    top: -250px;
 
     background:
         radial-gradient(
             circle,
-            rgba(139,92,246,.13),
-            transparent 70%
+            rgba(139,92,246,.18),
+            transparent 65%
         );
 
     pointer-events: none;
 
-    z-index: -2;
+}
+
+
+body::after {
+
+    content: "";
+
+    position: fixed;
+
+    width: 600px;
+    height: 600px;
+
+    right: -250px;
+    bottom: -250px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(245,197,66,.12),
+            transparent 65%
+        );
+
+    pointer-events: none;
+
 }
 
 
 /* =========================================================
-   FLOATING PARTICLES
+   PARTICLES
 ========================================================= */
 
-.particles {
-    position: fixed;
-    inset: 0;
+#particles {
 
-    overflow: hidden;
+    position: fixed;
+
+    inset: 0;
 
     pointer-events: none;
 
-    z-index: -1;
+    overflow: hidden;
+
+    z-index: 0;
+
 }
 
+
 .particle {
+
     position: absolute;
 
     width: 4px;
@@ -129,140 +128,33 @@ body::after {
 
     border-radius: 50%;
 
-    background: #b59cff;
-
-    box-shadow:
-        0 0 12px #8b5cf6;
-
-    opacity: .6;
+    background: white;
 
     animation:
         floatParticle
-        linear
-        infinite;
+        linear infinite;
+
 }
+
 
 @keyframes floatParticle {
 
     from {
+
         transform:
             translateY(110vh)
-            translateX(0);
+            scale(.5);
+
     }
 
     to {
+
         transform:
-            translateY(-20vh)
-            translateX(80px);
+            translateY(-10vh)
+            scale(1.2);
+
     }
 
-}
-
-
-/* =========================================================
-   MAIN LAYOUT
-========================================================= */
-
-.game {
-    width: min(1450px, 96vw);
-
-    min-height: 100vh;
-
-    margin: auto;
-
-    padding:
-        30px 0;
-
-    display: grid;
-
-    grid-template-columns:
-        minmax(0, 1fr)
-        340px;
-
-    gap: 24px;
-}
-
-
-/* =========================================================
-   GLASS PANELS
-========================================================= */
-
-.main,
-.leaderboard {
-    background:
-        linear-gradient(
-            145deg,
-            rgba(28,24,55,.94),
-            rgba(12,14,29,.96)
-        );
-
-    border:
-        1px solid rgba(145,119,255,.25);
-
-    box-shadow:
-        0 30px 80px rgba(0,0,0,.45),
-        inset 0 1px rgba(255,255,255,.05);
-
-    backdrop-filter:
-        blur(20px);
-
-    border-radius:
-        28px;
-}
-
-
-/* =========================================================
-   MAIN
-========================================================= */
-
-.main {
-    position: relative;
-
-    overflow: hidden;
-
-    min-height: 850px;
-}
-
-.main::before {
-    content: "";
-
-    position: absolute;
-
-    width: 350px;
-    height: 350px;
-
-    left: -180px;
-    top: -180px;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(139,92,246,.18),
-            transparent 70%
-        );
-
-    pointer-events: none;
-}
-
-.main::after {
-    content: "";
-
-    position: absolute;
-
-    width: 300px;
-    height: 300px;
-
-    right: -170px;
-    bottom: -170px;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(245,197,66,.12),
-            transparent 70%
-        );
-
-    pointer-events: none;
 }
 
 
@@ -271,923 +163,493 @@ body::after {
 ========================================================= */
 
 #menuScreen {
-    min-height: 850px;
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 20;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(50,35,95,.97),
+            rgba(7,7,18,.99)
+        );
+
+}
+
+
+.menuBox {
+
+    width: min(600px, 90%);
+
+    padding: 45px;
+
+    text-align: center;
+
+    border-radius: 28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(35,31,65,.97),
+            rgba(15,14,30,.97)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+    box-shadow:
+        0 30px 100px
+        rgba(0,0,0,.6),
+
+        0 0 80px
+        rgba(139,92,246,.12);
+
+}
+
+
+.logo {
+
+    font-size: 58px;
+
+    font-weight: 1000;
+
+    letter-spacing: -3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #a879ff,
+            #f5c542
+        );
+
+    -webkit-background-clip: text;
+
+    background-clip: text;
+
+    color: transparent;
+
+}
+
+
+.subtitle {
+
+    color: #969ab8;
+
+    margin-top: 8px;
+
+    margin-bottom: 35px;
+
+}
+
+
+.menuButtons {
 
     display: flex;
 
     flex-direction: column;
 
-    align-items: center;
-
-    justify-content: center;
-
-    position: relative;
-
-    z-index: 2;
-}
-
-.menu-logo {
-    font-size: 100px;
-
-    filter:
-        drop-shadow(
-            0 0 25px
-            rgba(139,92,246,.8)
-        );
-
-    animation:
-        logoFloat
-        3s ease-in-out
-        infinite;
-}
-
-@keyframes logoFloat {
-
-    0%,100% {
-        transform:
-            translateY(0)
-            rotate(-4deg);
-    }
-
-    50% {
-        transform:
-            translateY(-12px)
-            rotate(4deg);
-    }
+    gap: 13px;
 
 }
 
-.menu-title {
-    margin:
-        5px 0 0;
 
-    font-size:
-        clamp(45px, 7vw, 80px);
-
-    font-weight:
-        900;
-
-    letter-spacing:
-        -3px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #a78bfa,
-            #ffffff,
-            #f5c542
-        );
-
-    -webkit-background-clip:
-        text;
-
-    background-clip:
-        text;
-
-    color:
-        transparent;
-
-    text-shadow:
-        0 0 35px rgba(139,92,246,.2);
-}
-
-.menu-subtitle {
-    color: #969ab8;
-
-    letter-spacing:
-        4px;
-
-    font-size:
-        13px;
-
-    margin:
-        10px 0 40px;
-
-    text-transform:
-        uppercase;
-}
-
-
-/* =========================================================
-   MENU BUTTONS
-========================================================= */
-
-.menu-buttons {
-    width:
-        min(360px, 85%);
-
-    display:
-        flex;
-
-    flex-direction:
-        column;
-
-    gap:
-        13px;
-}
-
-.menu-btn {
-    position: relative;
+.menuButton {
 
     width: 100%;
 
+    padding: 17px;
+
     border: none;
 
-    border-radius:
-        15px;
+    border-radius: 15px;
 
-    padding:
-        18px;
-
-    font-size:
-        17px;
-
-    font-weight:
-        800;
-
-    letter-spacing:
-        1px;
-
-    cursor:
-        pointer;
-
-    transition:
-        .2s ease;
-
-    overflow:
-        hidden;
-}
-
-.menu-btn:hover {
-    transform:
-        translateY(-4px)
-        scale(1.015);
-}
-
-.menu-btn:active {
-    transform:
-        translateY(0)
-        scale(.99);
-}
-
-.play-btn {
     color: white;
-
-    background:
-        linear-gradient(
-            100deg,
-            #7448ff,
-            #9b68ff
-        );
-
-    box-shadow:
-        0 10px 35px
-        rgba(116,72,255,.35);
-}
-
-.play-btn::after {
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    left: -100%;
-
-    width: 60%;
-    height: 100%;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(255,255,255,.3),
-            transparent
-        );
-
-    transform:
-        skewX(-20deg);
-
-    transition:
-        .5s;
-}
-
-.play-btn:hover::after {
-    left: 130%;
-}
-
-.volume-btn,
-.rank-btn {
-    color: #dfe2ff;
-
-    background:
-        rgba(255,255,255,.045);
-
-    border:
-        1px solid rgba(255,255,255,.08);
-}
-
-.volume-btn:hover,
-.rank-btn:hover {
-    background:
-        rgba(139,92,246,.13);
-
-    border-color:
-        rgba(139,92,246,.4);
-}
-
-
-/* =========================================================
-   MENU STATS
-========================================================= */
-
-.menu-stats {
-    margin-top:
-        35px;
-
-    width:
-        min(360px, 85%);
-
-    padding:
-        20px;
-
-    border-radius:
-        18px;
-
-    background:
-        rgba(255,255,255,.035);
-
-    border:
-        1px solid rgba(255,255,255,.07);
-
-    text-align:
-        center;
-
-    color:
-        #9da2c4;
-
-    line-height:
-        1.8;
-}
-
-.menu-stats strong {
-    color:
-        #55e6ff;
-}
-
-.rank-display {
-    color:
-        #ffd84d;
-
-    font-weight:
-        bold;
-}
-
-.rank-points {
-    color:
-        #55e6ff;
-
-    font-weight:
-        bold;
-}
-
-
-/* =========================================================
-   GAME HEADER
-========================================================= */
-
-#gameScreen {
-    display: none;
-
-    position: relative;
-
-    z-index: 2;
-
-    padding:
-        25px 30px 35px;
-}
-
-.game-header {
-    display:
-        flex;
-
-    justify-content:
-        space-between;
-
-    align-items:
-        center;
-
-    gap:
-        20px;
-
-    margin-bottom:
-        15px;
-}
-
-.game-title {
-    margin: 0;
-
-    font-size:
-        30px;
-
-    font-weight:
-        900;
-
-    letter-spacing:
-        -1px;
-}
-
-.game-title span {
-    background:
-        linear-gradient(
-            90deg,
-            #9b72ff,
-            #f5c542
-        );
-
-    -webkit-background-clip:
-        text;
-
-    background-clip:
-        text;
-
-    color:
-        transparent;
-}
-
-.rank-chip {
-    padding:
-        9px 14px;
-
-    border-radius:
-        30px;
-
-    background:
-        rgba(255,216,77,.08);
-
-    border:
-        1px solid rgba(255,216,77,.25);
-
-    color:
-        #ffd84d;
-
-    font-size:
-        13px;
-
-    font-weight:
-        bold;
-}
-
-
-/* =========================================================
-   SCORE CARD
-========================================================= */
-
-.score-card {
-    display:
-        grid;
-
-    grid-template-columns:
-        1fr auto;
-
-    align-items:
-        center;
-
-    gap:
-        20px;
-
-    padding:
-        18px 20px;
-
-    border-radius:
-        18px;
-
-    background:
-        linear-gradient(
-            110deg,
-            rgba(139,92,246,.12),
-            rgba(255,255,255,.035)
-        );
-
-    border:
-        1px solid rgba(139,92,246,.2);
-}
-
-.score-label {
-    color:
-        #969ab8;
-
-    font-size:
-        12px;
-
-    text-transform:
-        uppercase;
-
-    letter-spacing:
-        2px;
-}
-
-.score-number {
-    font-size:
-        32px;
-
-    font-weight:
-        900;
-
-    margin:
-        3px 0 9px;
-}
-
-.score-number span {
-    color:
-        #55e6ff;
-}
-
-.progress {
-    height:
-        8px;
 
     background:
         rgba(255,255,255,.07);
 
-    border-radius:
-        10px;
+    border:
+        1px solid
+        rgba(255,255,255,.1);
 
-    overflow:
-        hidden;
+    font-weight: 800;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition:
+        .2s;
+
 }
 
-.progress-bar {
-    height:
-        100%;
 
-    width:
-        0%;
+.menuButton:hover {
 
-    border-radius:
-        inherit;
+    transform:
+        translateY(-3px);
+
+    background:
+        rgba(255,255,255,.12);
+
+}
+
+
+.playButton {
 
     background:
         linear-gradient(
             90deg,
-            #7c5cff,
-            #55e6ff
+            #7c3aed,
+            #9f67ff
         );
 
     box-shadow:
-        0 0 15px
-        rgba(85,230,255,.5);
+        0 8px 25px
+        rgba(124,58,237,.35);
 
-    transition:
-        width .4s ease;
-}
-
-.score-goal {
-    text-align:
-        right;
-
-    color:
-        #686d8e;
-
-    font-size:
-        12px;
-}
-
-.score-goal strong {
-    display:
-        block;
-
-    color:
-        white;
-
-    font-size:
-        20px;
 }
 
 
-/* =========================================================
-   TURN BAR
-========================================================= */
+.menuStats {
 
-.turn-bar {
-    display:
-        flex;
+    display: grid;
 
-    justify-content:
-        center;
+    grid-template-columns:
+        repeat(2,1fr);
 
-    align-items:
-        center;
+    gap: 12px;
 
-    gap:
-        20px;
+    margin-top: 25px;
 
-    margin:
-        20px 0 10px;
 }
 
-.turn-info {
-    display:
-        flex;
 
-    align-items:
-        center;
+.statBox {
 
-    gap:
-        12px;
+    padding: 15px;
 
-    padding:
-        10px 18px;
-
-    border-radius:
-        14px;
+    border-radius: 15px;
 
     background:
-        rgba(255,255,255,.04);
+        rgba(255,255,255,.05);
 
-    border:
-        1px solid rgba(255,255,255,.07);
 }
 
-.timer {
-    min-width:
-        34px;
 
-    height:
-        34px;
+.statTitle {
 
-    display:
-        flex;
+    color: #888ca8;
 
-    align-items:
-        center;
+    font-size: 11px;
 
-    justify-content:
-        center;
+    text-transform: uppercase;
 
-    border-radius:
-        50%;
+    letter-spacing: 1px;
 
-    background:
-        #55e6ff;
-
-    color:
-        #080914;
-
-    font-weight:
-        900;
-
-    box-shadow:
-        0 0 18px
-        rgba(85,230,255,.4);
 }
 
-.timer.warning {
-    background:
-        #ff6868;
 
-    box-shadow:
-        0 0 18px
-        rgba(255,104,104,.5);
+.statValue {
 
-    animation:
-        timerPulse
-        .5s infinite alternate;
-}
+    font-size: 19px;
 
-@keyframes timerPulse {
+    font-weight: 900;
 
-    from {
-        transform:
-            scale(1);
-    }
-
-    to {
-        transform:
-            scale(1.15);
-    }
+    margin-top: 5px;
 
 }
 
 
 /* =========================================================
-   FREE PASS
+   GAME
 ========================================================= */
 
-.pass-display {
-    display:
-        inline-flex;
+#gameScreen {
 
-    align-items:
-        center;
+    position: relative;
 
-    gap:
-        8px;
+    z-index: 2;
 
-    padding:
-        8px 15px;
+    min-height: 100vh;
 
-    border-radius:
-        30px;
+    padding: 25px;
+
+    display: none;
+
+}
+
+
+.header {
+
+    width: min(1250px, 100%);
+
+    margin: auto;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+
+}
+
+
+.gameLogo {
+
+    font-size: 28px;
+
+    font-weight: 1000;
 
     background:
         linear-gradient(
-            100deg,
-            rgba(255,216,77,.15),
-            rgba(255,159,67,.1)
+            90deg,
+            #a879ff,
+            #f5c542
         );
 
-    border:
-        1px solid rgba(255,216,77,.3);
+    -webkit-background-clip: text;
 
-    color:
-        #ffd84d;
+    background-clip: text;
 
-    font-size:
-        13px;
+    color: transparent;
 
-    font-weight:
-        800;
 }
 
 
-/* =========================================================
-   ELIMINATION
-========================================================= */
-
-#eliminationText {
-    min-height:
-        35px;
-
-    text-align:
-        center;
-}
-
-.elimination {
-    display:
-        inline-block;
+.backButton {
 
     padding:
-        8px 20px;
+        10px 16px;
 
-    border-radius:
-        30px;
+    border: none;
 
-    color:
-        #ffd84d;
+    border-radius: 10px;
 
     background:
-        rgba(255,216,77,.1);
+        rgba(255,255,255,.07);
 
-    border:
-        1px solid rgba(255,216,77,.35);
+    color: #bbbdd0;
 
-    font-weight:
-        900;
+    cursor: pointer;
 
-    animation:
-        eliminationGlow
-        1.2s infinite alternate;
 }
 
-@keyframes eliminationGlow {
 
-    from {
-        box-shadow:
-            0 0 5px rgba(255,216,77,.1);
-    }
+.layout {
 
-    to {
-        box-shadow:
-            0 0 25px rgba(255,216,77,.3);
-    }
+    width: min(1250px, 100%);
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 300px;
+
+    gap: 22px;
 
 }
 
 
 /* =========================================================
-   WHEEL SECTION
+   MAIN CARD
 ========================================================= */
 
-.wheel-section {
-    position:
-        relative;
+.main {
 
-    display:
-        flex;
+    position: relative;
 
-    flex-direction:
-        column;
+    padding: 25px;
 
-    align-items:
-        center;
+    border-radius: 28px;
 
-    margin-top:
-        5px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(32,29,57,.96),
+            rgba(14,13,27,.96)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.1);
+
+    box-shadow:
+        0 25px 70px
+        rgba(0,0,0,.4);
+
 }
 
-.wheel-area {
-    position:
-        relative;
 
-    width:
-        min(470px, 90vw);
+.topInfo {
 
-    height:
-        min(470px, 90vw);
+    display: flex;
 
-    display:
-        flex;
+    justify-content: center;
 
-    align-items:
-        center;
+    gap: 15px;
 
-    justify-content:
-        center;
+    flex-wrap: wrap;
+
+}
+
+
+.score-card {
+
+    min-width: 150px;
+
+    padding: 12px 22px;
+
+    text-align: center;
+
+    border-radius: 15px;
+
+    background:
+        rgba(255,255,255,.05);
+
+}
+
+
+.score-label {
+
+    font-size: 10px;
+
+    color: #8e91aa;
+
+    letter-spacing: 2px;
+
+}
+
+
+#score {
+
+    font-size: 30px;
+
+    font-weight: 1000;
+
+    margin-top: 3px;
+
+}
+
+
+.rankCard {
+
+    min-width: 150px;
+
+    padding: 12px 22px;
+
+    text-align: center;
+
+    border-radius: 15px;
+
+    background:
+        rgba(255,255,255,.05);
+
+}
+
+
+#gameRank {
+
+    font-size: 16px;
+
+    font-weight: 900;
+
+    margin-top: 4px;
+
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.progressContainer {
+
+    height: 9px;
 
     margin:
-        5px auto 0;
-}
+        18px auto 12px;
 
-.wheel-glow {
-    position:
-        absolute;
+    width: 90%;
 
-    width:
-        95%;
+    border-radius: 20px;
 
-    height:
-        95%;
-
-    border-radius:
-        50%;
+    overflow: hidden;
 
     background:
-        conic-gradient(
+        rgba(255,255,255,.08);
+
+}
+
+
+#progressBar {
+
+    height: 100%;
+
+    width: 0%;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            90deg,
             #8b5cf6,
-            #f5c542,
-            #8b5cf6,
-            #f5c542,
-            #8b5cf6
+            #f5c542
         );
-
-    filter:
-        blur(25px);
-
-    opacity:
-        .25;
-
-    animation:
-        wheelGlow
-        3s linear infinite;
-}
-
-@keyframes wheelGlow {
-
-    to {
-        transform:
-            rotate(360deg);
-    }
-
-}
-
-#wheel {
-    width:
-        88%;
-
-    height:
-        88%;
-
-    border-radius:
-        50%;
-
-    display:
-        block;
-
-    border:
-        9px solid #f7f4ff;
-
-    box-shadow:
-        0 0 0 4px rgba(139,92,246,.5),
-        0 0 35px rgba(139,92,246,.35),
-        0 25px 50px rgba(0,0,0,.5);
 
     transition:
-        transform 4s cubic-bezier(.15,.75,.15,1);
+        width .4s;
 
-    position:
-        relative;
-
-    z-index:
-        2;
 }
 
 
 /* =========================================================
-   POINTER
+   TIMER
 ========================================================= */
 
-.pointer {
-    position:
-        absolute;
+.timer {
 
-    right:
-        0;
+    text-align: center;
 
-    top:
-        50%;
+    font-size: 46px;
 
-    transform:
-        translateY(-50%);
+    font-weight: 1000;
 
-    width:
-        0;
+    margin-top: 5px;
 
-    height:
-        0;
-
-    border-top:
-        23px solid transparent;
-
-    border-bottom:
-        23px solid transparent;
-
-    border-right:
-        52px solid #ffd84d;
-
-    filter:
-        drop-shadow(
-            0 0 8px
-            rgba(255,216,77,.7)
-        );
-
-    z-index:
-        5;
 }
 
 
-/* =========================================================
-   CENTER
-========================================================= */
+.timer.warning {
 
-.center {
-    position:
-        absolute;
+    color: #ff5d6c;
 
-    width:
-        82px;
+    animation:
+        timerPulse .4s
+        infinite alternate;
 
-    height:
-        82px;
+}
 
-    left:
-        50%;
 
-    top:
-        50%;
+@keyframes timerPulse {
 
-    transform:
-        translate(-50%, -50%);
+    to {
+        transform: scale(1.12);
+    }
 
-    border-radius:
-        50%;
-
-    background:
-        radial-gradient(
-            circle at 35% 30%,
-            #29234d,
-            #101020
-        );
-
-    border:
-        6px solid white;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    font-size:
-        12px;
-
-    font-weight:
-        900;
-
-    letter-spacing:
-        1px;
-
-    box-shadow:
-        0 0 20px rgba(0,0,0,.6),
-        inset 0 0 15px rgba(139,92,246,.3);
-
-    z-index:
-        4;
-
-    pointer-events:
-        none;
 }
 
 
@@ -1195,18 +657,165 @@ body::after {
    QUESTION
 ========================================================= */
 
-.question {
+#question {
+
+    text-align: center;
+
+    color: #d5d6e5;
+
+    font-size: 15px;
+
+    margin-bottom: 10px;
+
+}
+
+
+#message {
+
+    min-height: 45px;
+
+    text-align: center;
+
+    color: #9ea2c0;
+
+    font-size: 14px;
+
+}
+
+
+/* =========================================================
+   WHEEL
+========================================================= */
+
+.wheelArea {
+
+    position: relative;
+
+    width: 420px;
+
+    max-width: 100%;
+
     margin:
-        0 0 12px;
+        15px auto 20px;
 
-    text-align:
-        center;
+}
 
-    color:
-        #b8bdd8;
 
-    font-size:
-        14px;
+#wheel {
+
+    display: block;
+
+    width: 400px;
+
+    height: 400px;
+
+    max-width: 100%;
+
+    margin: auto;
+
+    border-radius: 50%;
+
+    box-shadow:
+
+        0 0 0 8px
+        rgba(255,255,255,.06),
+
+        0 15px 50px
+        rgba(0,0,0,.55);
+
+    transition:
+        transform 4s
+        cubic-bezier(.12,.7,.18,1);
+
+}
+
+
+/* POINTER */
+
+.pointer {
+
+    position: absolute;
+
+    z-index: 5;
+
+    top: -3px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    width: 0;
+    height: 0;
+
+    border-left:
+        14px solid transparent;
+
+    border-right:
+        14px solid transparent;
+
+    border-top:
+        30px solid white;
+
+    filter:
+        drop-shadow(
+            0 3px 5px
+            rgba(0,0,0,.6)
+        );
+
+}
+
+
+/* CENTER */
+
+.centerSpin {
+
+    position: absolute;
+
+    width: 88px;
+
+    height: 88px;
+
+    left: 50%;
+
+    top: 50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    border-radius: 50%;
+
+    border:
+        7px solid
+        #18162a;
+
+    background:
+        linear-gradient(
+            145deg,
+            #9b6cff,
+            #6d28d9
+        );
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 14px;
+
+    font-weight: 1000;
+
+    text-align: center;
+
+    box-shadow:
+        0 0 30px
+        rgba(139,92,246,.5);
+
+    pointer-events: none;
+
 }
 
 
@@ -1214,279 +823,240 @@ body::after {
    COLOR BUTTONS
 ========================================================= */
 
-.buttons {
-    display:
-        flex;
+.colorButtons {
 
-    justify-content:
-        center;
+    display: flex;
 
-    gap:
-        15px;
+    justify-content: center;
 
-    margin:
-        15px 0;
+    gap: 15px;
+
+    margin-top: 10px;
+
 }
 
-.color-btn {
-    position:
-        relative;
 
-    width:
-        170px;
+.colorButton {
 
-    padding:
-        16px;
+    width: 170px;
 
-    border:
-        1px solid rgba(255,255,255,.12);
+    padding: 17px;
 
-    border-radius:
-        15px;
+    border: none;
 
-    font-size:
-        16px;
+    border-radius: 15px;
 
-    font-weight:
-        900;
+    color: white;
 
-    cursor:
-        pointer;
+    font-size: 16px;
+
+    font-weight: 1000;
+
+    cursor: pointer;
 
     transition:
         .2s;
 
-    overflow:
-        hidden;
 }
 
-.color-btn:hover:not(:disabled) {
+
+.colorButton:hover {
+
     transform:
-        translateY(-5px);
+        translateY(-4px);
 
-    filter:
-        brightness(1.15);
 }
 
-.color-btn:disabled {
-    opacity:
-        .35;
 
-    cursor:
-        not-allowed;
+.colorButton:disabled {
+
+    opacity: .4;
+
+    cursor: not-allowed;
+
+    transform: none;
+
 }
 
-.purple {
-    color:
-        white;
+
+#purpleBtn {
 
     background:
         linear-gradient(
             135deg,
-            #7044e8,
-            #a06cff
+            #7c3aed,
+            #a855f7
         );
 
     box-shadow:
         0 8px 25px
-        rgba(139,92,246,.25);
+        rgba(124,58,237,.25);
+
 }
 
-.yellow {
-    color:
-        #17120a;
+
+#yellowBtn {
 
     background:
         linear-gradient(
             135deg,
-            #f0b928,
-            #ffe06c
+            #eab308,
+            #f5c542
         );
+
+    color: #17120a;
 
     box-shadow:
         0 8px 25px
         rgba(245,197,66,.2);
+
 }
 
-.selected {
+
+.colorButton.selected {
+
+    transform:
+        translateY(-5px)
+        scale(1.04);
+
     outline:
         3px solid white;
 
-    transform:
-        translateY(-5px);
-
-    box-shadow:
-        0 0 30px
-        rgba(255,255,255,.3);
 }
 
 
 /* =========================================================
-   ACTION BUTTONS
+   CONTROLS
 ========================================================= */
 
+.controls {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    margin-top: 18px;
+
+}
+
+
 #spinBtn {
-    display:
-        block;
-
-    width:
-        300px;
-
-    max-width:
-        90%;
-
-    margin:
-        12px auto 8px;
 
     padding:
-        17px;
+        15px 30px;
 
-    border:
-        none;
+    border: none;
 
-    border-radius:
-        15px;
-
-    color:
-        white;
-
-    font-size:
-        17px;
-
-    font-weight:
-        900;
-
-    letter-spacing:
-        1px;
-
-    cursor:
-        pointer;
+    border-radius: 14px;
 
     background:
         linear-gradient(
-            100deg,
-            #7044e8,
-            #9a65ff
+            90deg,
+            #7c3aed,
+            #a855f7
         );
 
-    box-shadow:
-        0 10px 30px
-        rgba(112,68,232,.35);
+    color: white;
 
-    transition:
-        .2s;
+    font-weight: 1000;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
 }
 
-#spinBtn:hover:not(:disabled) {
-    transform:
-        translateY(-3px);
-
-    box-shadow:
-        0 14px 40px
-        rgba(112,68,232,.5);
-}
 
 #spinBtn:disabled {
-    opacity:
-        .4;
 
-    cursor:
-        not-allowed;
+    opacity: .5;
+
+    cursor: not-allowed;
+
 }
 
-#passBtn,
-#menuBtn {
-    display:
-        inline-block;
-
-    padding:
-        10px 18px;
-
-    border-radius:
-        11px;
-
-    cursor:
-        pointer;
-
-    font-weight:
-        700;
-
-    transition:
-        .2s;
-}
 
 #passBtn {
-    color:
-        #ffd84d;
+
+    padding:
+        15px 20px;
+
+    border: none;
+
+    border-radius: 14px;
 
     background:
-        rgba(255,216,77,.08);
+        rgba(245,197,66,.12);
 
     border:
-        1px solid rgba(255,216,77,.35);
+        1px solid
+        rgba(245,197,66,.35);
+
+    color: #f5c542;
+
+    font-weight: 900;
+
+    cursor: pointer;
+
 }
 
-#passBtn:hover:not(:disabled) {
-    background:
-        rgba(255,216,77,.16);
-
-    transform:
-        translateY(-2px);
-}
 
 #passBtn:disabled {
-    opacity:
-        .3;
 
-    cursor:
-        not-allowed;
+    opacity: .35;
+
+    cursor: not-allowed;
+
 }
 
-#menuBtn {
-    color:
-        #9297b8;
 
-    background:
-        transparent;
+#passDisplay {
 
-    border:
-        1px solid rgba(255,255,255,.1);
+    text-align: center;
 
-    margin-left:
-        8px;
-}
+    font-size: 11px;
 
-#menuBtn:hover {
-    color:
-        white;
+    color: #9295b0;
 
-    border-color:
-        rgba(255,255,255,.25);
+    margin-top: 9px;
+
 }
 
 
 /* =========================================================
-   MESSAGE
+   ELIMINATION
 ========================================================= */
 
-.message {
-    min-height:
-        45px;
+.elimination {
 
-    margin-top:
-        15px;
+    text-align: center;
 
-    text-align:
-        center;
+    font-size: 18px;
 
-    color:
-        #aeb3d0;
+    font-weight: 1000;
 
-    font-size:
-        14px;
+    margin:
+        10px 0;
 
-    line-height:
-        1.5;
+    padding: 10px;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(139,92,246,.15),
+            rgba(245,197,66,.15)
+        );
+
+    border:
+        1px solid
+        rgba(245,197,66,.25);
+
+    color: #f5c542;
+
 }
 
 
@@ -1494,214 +1064,145 @@ body::after {
    LEADERBOARD
 ========================================================= */
 
-.leaderboard {
-    align-self:
-        start;
+.leaderboardCard {
 
-    padding:
-        23px;
+    padding: 20px;
 
-    position:
-        sticky;
-
-    top:
-        25px;
-}
-
-.leader-header {
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        space-between;
-
-    margin-bottom:
-        18px;
-}
-
-.leaderboard h2 {
-    margin:
-        0;
-
-    font-size:
-        21px;
-}
-
-.live {
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    gap:
-        6px;
-
-    color:
-        #6ef5a7;
-
-    font-size:
-        10px;
-
-    font-weight:
-        bold;
-
-    letter-spacing:
-        1px;
-}
-
-.live-dot {
-    width:
-        7px;
-
-    height:
-        7px;
-
-    border-radius:
-        50%;
+    border-radius: 25px;
 
     background:
-        #6ef5a7;
+        linear-gradient(
+            145deg,
+            rgba(32,29,57,.96),
+            rgba(14,13,27,.96)
+        );
 
-    box-shadow:
-        0 0 10px #6ef5a7;
+    border:
+        1px solid
+        rgba(255,255,255,.1);
+
+    height: fit-content;
+
 }
 
 
-/* =========================================================
-   PLAYERS
-========================================================= */
+.leaderboardTitle {
+
+    font-size: 18px;
+
+    font-weight: 1000;
+
+    margin-bottom: 15px;
+
+}
+
 
 .player {
-    display:
-        grid;
+
+    display: grid;
 
     grid-template-columns:
         35px 1fr auto;
 
-    align-items:
-        center;
+    align-items: center;
 
-    gap:
-        8px;
+    gap: 7px;
 
-    margin:
-        9px 0;
+    padding: 12px;
 
-    padding:
-        12px;
+    margin-bottom: 8px;
 
-    border-radius:
-        14px;
+    border-radius: 12px;
 
     background:
-        rgba(255,255,255,.035);
+        rgba(255,255,255,.04);
 
-    border:
-        1px solid rgba(255,255,255,.055);
-
-    transition:
-        .2s;
 }
 
-.player:hover {
-    transform:
-        translateX(-4px);
-
-    background:
-        rgba(139,92,246,.09);
-
-    border-color:
-        rgba(139,92,246,.2);
-}
 
 .player.you {
+
     background:
         linear-gradient(
             90deg,
-            rgba(139,92,246,.2),
-            rgba(85,230,255,.06)
+            rgba(139,92,246,.22),
+            rgba(139,92,246,.05)
         );
 
     border:
-        1px solid rgba(139,92,246,.4);
+        1px solid
+        rgba(139,92,246,.3);
 
-    box-shadow:
-        0 0 20px rgba(139,92,246,.08);
 }
+
 
 .player.finalist {
-    border-color:
-        rgba(255,216,77,.5);
 
-    box-shadow:
-        0 0 18px
-        rgba(255,216,77,.08);
+    border:
+        1px solid
+        rgba(245,197,66,.4);
+
 }
+
 
 .rank {
-    font-size:
-        13px;
 
-    color:
-        #6e7395;
+    color: #8d91ad;
 
-    font-weight:
-        900;
+    font-weight: 900;
 
-    text-align:
-        center;
 }
+
 
 .name {
-    overflow:
-        hidden;
 
-    text-overflow:
-        ellipsis;
+    font-weight: 800;
 
-    white-space:
-        nowrap;
+    font-size: 13px;
 
-    font-size:
-        14px;
-
-    font-weight:
-        700;
 }
+
 
 .points {
-    color:
-        #55e6ff;
 
-    font-weight:
-        900;
+    font-weight: 1000;
 
-    font-size:
-        15px;
+    color: #f5c542;
+
 }
 
-.leader-footer {
-    margin-top:
-        18px;
 
-    padding-top:
-        15px;
+/* =========================================================
+   WIN ANIMATION
+========================================================= */
 
-    border-top:
-        1px solid rgba(255,255,255,.06);
+.win-flash {
 
-    color:
-        #6f7495;
+    animation:
+        winFlash .4s
+        infinite alternate;
 
-    font-size:
-        11px;
+}
 
-    text-align:
-        center;
+
+@keyframes winFlash {
+
+    from {
+
+        box-shadow:
+            0 0 20px
+            rgba(139,92,246,.4);
+
+    }
+
+    to {
+
+        box-shadow:
+            0 0 70px
+            rgba(245,197,66,.7);
+
+    }
+
 }
 
 
@@ -1709,113 +1210,73 @@ body::after {
    RESPONSIVE
 ========================================================= */
 
-@media (max-width: 1000px) {
+@media(max-width:900px) {
 
-    .game {
+    .layout {
+
         grid-template-columns:
             1fr;
+
     }
 
-    .leaderboard {
-        position:
-            static;
+    .leaderboardCard {
+
+        order: 2;
+
     }
 
 }
 
-@media (max-width: 600px) {
 
-    .game {
-        width:
-            100%;
+@media(max-width:520px) {
 
-        padding:
-            10px;
+    #gameScreen {
+
+        padding: 12px;
+
     }
 
     .main {
-        border-radius:
-            20px;
+
+        padding: 15px;
+
     }
 
-    #gameScreen {
-        padding:
-            18px 14px 25px;
+    .colorButtons {
+
+        flex-direction: column;
+
     }
 
-    .game-header {
-        flex-direction:
-            column;
+    .colorButton {
 
-        align-items:
-            flex-start;
+        width: 100%;
+
     }
 
-    .score-card {
-        grid-template-columns:
-            1fr;
+    .controls {
+
+        flex-direction: column;
+
     }
 
-    .score-goal {
-        text-align:
-            left;
-    }
-
-    .buttons {
-        flex-direction:
-            column;
-    }
-
-    .color-btn {
-        width:
-            100%;
-    }
-
-    #spinBtn {
-        width:
-            100%;
-    }
-
-    #menuBtn,
+    #spinBtn,
     #passBtn {
-        margin:
-            5px 3px;
+
+        width: 100%;
+
     }
 
-}
+    .logo {
 
+        font-size: 43px;
 
-/* =========================================================
-   WIN FLASH
-========================================================= */
-
-.win-flash {
-    animation:
-        winFlash
-        .8s ease;
-}
-
-@keyframes winFlash {
-
-    0% {
-        box-shadow:
-            0 0 0 transparent;
-    }
-
-    50% {
-        box-shadow:
-            0 0 80px
-            rgba(255,216,77,.7);
-    }
-
-    100% {
-        box-shadow:
-            0 0 0 transparent;
     }
 
 }
 
 </style>
+
 </head>
 
 
@@ -1826,17 +1287,7 @@ body::after {
      PARTICLES
 ===================================================== -->
 
-<div class="particles" id="particles"></div>
-
-
-<div class="game">
-
-
-<!-- =====================================================
-     MAIN
-===================================================== -->
-
-<div class="main">
+<div id="particles"></div>
 
 
 <!-- =====================================================
@@ -1845,80 +1296,110 @@ body::after {
 
 <div id="menuScreen">
 
-    <div class="menu-logo">
-        🎡
-    </div>
+    <div class="menuBox">
 
-    <h1 class="menu-title">
-        SPIN & GUESS
-    </h1>
-
-    <div class="menu-subtitle">
-        Guess · Spin · Survive
-    </div>
-
-
-    <div class="menu-buttons">
-
-        <button
-            class="menu-btn play-btn"
-            onclick="startGame()">
-
-            ▶ &nbsp; PLAY GAME
-
-        </button>
-
-
-        <button
-            class="menu-btn volume-btn"
-            id="volumeBtn"
-            onclick="toggleVolume()">
-
-            🔊 VOLUME: ON
-
-        </button>
-
-
-        <button
-            class="menu-btn rank-btn"
-            onclick="showRank()">
-
-            🏆 &nbsp; YOUR RANK
-
-        </button>
-
-    </div>
-
-
-    <div class="menu-stats">
-
-        <div>
-            TOTAL WINS:
-            <strong id="menuWins">
-                0
-            </strong>
+        <div class="logo">
+            SPIN & GUESS
         </div>
 
-        <div>
-            RANK:
-            <span
-                class="rank-display"
-                id="menuRank">
-                🥉 Bronze III
-            </span>
+        <div class="subtitle">
+            Guess the color. Reach 50. Survive the elimination.
         </div>
 
-        <div>
-            RANK POINTS:
-            <span
-                class="rank-points"
-                id="menuRankPoints">
-                0
-            </span>
+
+        <div class="menuButtons">
+
+            <button
+                class="menuButton playButton"
+                onclick="startGame()">
+
+                ▶ PLAY
+
+            </button>
+
+
+            <button
+                class="menuButton"
+                onclick="showRank()">
+
+                🏆 VIEW RANK
+
+            </button>
+
+
+            <button
+                id="volumeBtn"
+                class="menuButton"
+                onclick="toggleVolume()">
+
+                🔊 VOLUME: ON
+
+            </button>
+
         </div>
+
+
+        <div class="menuStats">
+
+            <div class="statBox">
+
+                <div class="statTitle">
+                    Wins
+                </div>
+
+                <div
+                    id="menuWins"
+                    class="statValue">
+
+                    0
+
+                </div>
+
+            </div>
+
+
+            <div class="statBox">
+
+                <div class="statTitle">
+                    Rank
+                </div>
+
+                <div
+                    id="menuRank"
+                    class="statValue">
+
+                    🥉 Bronze III
+
+                </div>
+
+            </div>
+
+        </div>
+
 
         <div
-            id="rankProgress">
+            style="
+                margin-top:18px;
+                color:#777b99;
+                font-size:12px;
+            ">
+
+            Rank Points:
+            <span id="menuRankPoints">
+                0
+            </span>
+
+        </div>
+
+
+        <div
+            id="rankProgress"
+            style="
+                margin-top:8px;
+                color:#777b99;
+                font-size:11px;
+            ">
+
         </div>
 
     </div>
@@ -1927,262 +1408,249 @@ body::after {
 
 
 <!-- =====================================================
-     GAME SCREEN
+     GAME
 ===================================================== -->
 
 <div id="gameScreen">
 
 
-<!-- HEADER -->
+    <div class="header">
 
-<div class="game-header">
+        <div class="gameLogo">
+            SPIN & GUESS
+        </div>
 
-    <h1 class="game-title">
-        🎡 <span>SPIN & GUESS</span>
-    </h1>
 
-    <div
-        class="rank-chip"
-        id="gameRank">
+        <button
+            class="backButton"
+            onclick="returnToMenu()">
 
-        🥉 Bronze III
+            ← MENU
+
+        </button>
 
     </div>
 
-</div>
+
+    <div class="layout">
 
 
-<!-- SCORE -->
+        <!-- =================================================
+             MAIN
+        ================================================== -->
 
-<div class="score-card">
+        <div class="main">
 
-    <div>
 
-        <div class="score-label">
-            YOUR SCORE
+            <div class="topInfo">
+
+
+                <div class="score-card">
+
+                    <div class="score-label">
+                        SCORE / 50
+                    </div>
+
+                    <div id="score">
+                        0
+                    </div>
+
+                </div>
+
+
+                <div class="rankCard">
+
+                    <div class="score-label">
+                        RANK
+                    </div>
+
+                    <div id="gameRank">
+                        🥉 Bronze III
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="progressContainer">
+
+                <div id="progressBar"></div>
+
+            </div>
+
+
+            <div id="livesDisplay"></div>
+
+
+            <div class="timer"
+                 id="timer">
+
+                10
+
+            </div>
+
+
+            <div id="question">
+
+                Everyone chooses at the same time!
+
+            </div>
+
+
+            <div id="message">
+
+                Start the turn when you're ready!
+
+            </div>
+
+
+            <div id="eliminationText"></div>
+
+
+            <!-- WHEEL -->
+
+            <div class="wheelArea">
+
+                <div class="pointer"></div>
+
+
+                <canvas
+                    id="wheel"
+                    width="400"
+                    height="400">
+
+                </canvas>
+
+
+                <div class="centerSpin">
+
+                    SPIN
+
+                </div>
+
+            </div>
+
+
+            <!-- COLORS -->
+
+            <div class="colorButtons">
+
+
+                <button
+                    id="purpleBtn"
+                    class="colorButton"
+                    onclick="chooseColor('purple')"
+                    disabled>
+
+                    🟣 PURPLE
+
+                </button>
+
+
+                <button
+                    id="yellowBtn"
+                    class="colorButton"
+                    onclick="chooseColor('yellow')"
+                    disabled>
+
+                    🟡 YELLOW
+
+                </button>
+
+
+            </div>
+
+
+            <!-- CONTROLS -->
+
+            <div class="controls">
+
+
+                <button
+                    id="spinBtn"
+                    onclick="startTurn()">
+
+                    ▶ START TURN
+
+                </button>
+
+
+                <button
+                    id="passBtn"
+                    onclick="useFreePass()">
+
+                    🎟️ FREE PASS
+
+                </button>
+
+
+            </div>
+
+
+            <div id="passDisplay">
+
+                🎟️ FREE PASS AVAILABLE
+
+            </div>
+
+
         </div>
 
-        <div class="score-number">
 
-            <span id="score">
-                0
-            </span>
+        <!-- =================================================
+             LEADERBOARD
+        ================================================== -->
 
-            <span
-                style="color:#555b7b;">
-                / 100
-            </span>
+        <div class="leaderboardCard">
 
-        </div>
+            <div class="leaderboardTitle">
 
-        <div class="progress">
+                🏆 LEADERBOARD
+
+            </div>
+
 
             <div
-                class="progress-bar"
-                id="progressBar">
+                id="leaderboard">
+
+            </div>
+
+
+            <div
+                style="
+                    margin-top:15px;
+                    padding-top:15px;
+                    border-top:
+                        1px solid
+                        rgba(255,255,255,.07);
+                    color:#747895;
+                    font-size:11px;
+                    line-height:1.6;
+                ">
+
+                Everyone starts at 0.
+
+                <br>
+
+                Reach <b style="color:#f5c542">
+                50 points
+                </b> to enter the elimination round.
+
+                <br>
+
+                Correct answers restore all
+                <b style="color:#ff6b7a">
+                3 lives
+                </b>.
+
             </div>
 
         </div>
 
-    </div>
-
-
-    <div class="score-goal">
-
-        GOAL
-
-        <strong>
-            100
-        </strong>
-
-        POINTS
 
     </div>
-
-</div>
-
-
-<!-- TURN BAR -->
-
-<div class="turn-bar">
-
-    <div class="turn-info">
-
-        <span>
-            ⏱ CHOOSE
-        </span>
-
-        <div
-            class="timer"
-            id="timer">
-
-            10
-
-        </div>
-
-    </div>
-
-
-    <div
-        class="pass-display"
-        id="passDisplay">
-
-        🎟️ FREE PASS AVAILABLE
-
-    </div>
-
-</div>
-
-
-<div
-    id="eliminationText">
-</div>
-
-
-<!-- WHEEL -->
-
-<div class="wheel-section">
-
-    <div class="wheel-area">
-
-        <div class="wheel-glow"></div>
-
-        <canvas
-            id="wheel"
-            width="400"
-            height="400">
-        </canvas>
-
-        <div class="pointer"></div>
-
-        <div class="center">
-            SPIN
-        </div>
-
-    </div>
-
-
-    <div
-        class="question"
-        id="question">
-
-        Everyone chooses at the same time!
-
-    </div>
-
-</div>
-
-
-<!-- COLOR BUTTONS -->
-
-<div class="buttons">
-
-    <button
-        class="color-btn purple"
-        id="purpleBtn"
-        onclick="chooseColor('purple')"
-        disabled>
-
-        🟣 PURPLE
-
-    </button>
-
-
-    <button
-        class="color-btn yellow"
-        id="yellowBtn"
-        onclick="chooseColor('yellow')"
-        disabled>
-
-        🟡 YELLOW
-
-    </button>
-
-</div>
-
-
-<!-- SPIN -->
-
-<button
-    id="spinBtn"
-    onclick="startTurn()">
-
-    ▶ START TURN
-
-</button>
-
-
-<div style="text-align:center;">
-
-    <button
-        id="passBtn"
-        onclick="useFreePass()"
-        disabled>
-
-        🎟️ USE FREE PASS
-
-    </button>
-
-
-    <button
-        id="menuBtn"
-        onclick="returnToMenu()">
-
-        ← MENU
-
-    </button>
-
-</div>
-
-
-<div
-    class="message"
-    id="message">
-
-    Start the turn when you're ready!
-
-</div>
-
-
-</div>
-
-</div>
-
-
-<!-- =====================================================
-     LEADERBOARD
-===================================================== -->
-
-<div class="leaderboard">
-
-    <div class="leader-header">
-
-        <h2>
-            🏆 LEADERBOARD
-        </h2>
-
-        <div class="live">
-
-            <span class="live-dot"></span>
-
-            LIVE
-
-        </div>
-
-    </div>
-
-
-    <div id="leaderboard"></div>
-
-
-    <div class="leader-footer">
-
-        ⚡ Everyone plays the same turn
-
-    </div>
-
-</div>
-
 
 </div>
 
@@ -2196,12 +1664,7 @@ body::after {
 const particleContainer =
     document.getElementById("particles");
 
-
-for (
-    let i = 0;
-    i < 35;
-    i++
-) {
+for (let i = 0; i < 40; i++) {
 
     const particle =
         document.createElement("div");
@@ -2219,7 +1682,7 @@ for (
         (-Math.random() * 15) + "s";
 
     particle.style.opacity =
-        .2 + Math.random() * .5;
+        .15 + Math.random() * .5;
 
     particleContainer.appendChild(
         particle
@@ -2260,7 +1723,9 @@ const question =
     document.getElementById("question");
 
 const eliminationText =
-    document.getElementById("eliminationText");
+    document.getElementById(
+        "eliminationText"
+    );
 
 const timerElement =
     document.getElementById("timer");
@@ -2281,20 +1746,32 @@ const menuRank =
     document.getElementById("menuRank");
 
 const menuRankPoints =
-    document.getElementById("menuRankPoints");
+    document.getElementById(
+        "menuRankPoints"
+    );
 
 const rankProgress =
-    document.getElementById("rankProgress");
+    document.getElementById(
+        "rankProgress"
+    );
 
 const gameRank =
-    document.getElementById("gameRank");
+    document.getElementById(
+        "gameRank"
+    );
 
 
 /* =========================================================
-   VARIABLES
+   GAME SETTINGS
 ========================================================= */
 
+const WIN_SCORE = 50;
+
+const MAX_LIVES = 3;
+
 let score = 0;
+
+let lives = MAX_LIVES;
 
 let selectedColor = null;
 
@@ -2308,17 +1785,17 @@ let spinning = false;
 
 let turnActive = false;
 
+let gameOver = false;
+
 let countdown = 10;
 
 let countdownInterval = null;
 
 let rotation = 0;
 
-let gameOver = false;
-
 
 /* =========================================================
-   SAVED DATA
+   SAVED PLAYER DATA
 ========================================================= */
 
 let wins =
@@ -2412,10 +1889,10 @@ const RANK_LOSS_POINTS = 50;
 
 
 /* =========================================================
-   NPCS
+   NPC PLAYERS
 ========================================================= */
 
-let players = [
+const players = [
 
     {
         name: "Shadow",
@@ -2461,7 +1938,7 @@ let players = [
 
 
 /* =========================================================
-   WHEEL DATA
+   WHEEL
 ========================================================= */
 
 const numbers = [
@@ -2491,7 +1968,9 @@ const colors = [
 function drawWheel() {
 
     const centerX = 200;
+
     const centerY = 200;
+
     const radius = 195;
 
     ctx.clearRect(
@@ -2547,7 +2026,7 @@ function drawWheel() {
 
 
         ctx.strokeStyle =
-            "rgba(255,255,255,.85)";
+            "rgba(255,255,255,.9)";
 
         ctx.lineWidth = 3;
 
@@ -2571,7 +2050,7 @@ function drawWheel() {
 
         ctx.fillStyle =
             colors[i] === "yellow"
-            ? "#181818"
+            ? "#17120a"
             : "white";
 
 
@@ -2600,7 +2079,64 @@ drawWheel();
 
 
 /* =========================================================
-   RANK FUNCTIONS
+   LIVES
+========================================================= */
+
+function updateLivesDisplay() {
+
+    const container =
+        document.getElementById(
+            "livesDisplay"
+        );
+
+
+    let hearts = "";
+
+
+    for (
+        let i = 0;
+        i < MAX_LIVES;
+        i++
+    ) {
+
+        hearts +=
+            i < lives
+            ? "❤️"
+            : "🖤";
+
+    }
+
+
+    container.innerHTML = `
+
+        <div style="
+            text-align:center;
+            font-size:22px;
+            letter-spacing:5px;
+        ">
+
+            ${hearts}
+
+            <div style="
+                font-size:9px;
+                color:#8f92ad;
+                letter-spacing:2px;
+                margin-top:3px;
+            ">
+
+                LIVES
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   RANK
 ========================================================= */
 
 function getCurrentRank() {
@@ -2627,6 +2163,7 @@ function getCurrentRank() {
 
     }
 
+
     return current;
 
 }
@@ -2637,10 +2174,12 @@ function getNextRank() {
     const current =
         getCurrentRank();
 
+
     const index =
         ranks.indexOf(
             current
         );
+
 
     if (
         index >=
@@ -2650,6 +2189,7 @@ function getNextRank() {
         return null;
 
     }
+
 
     return ranks[
         index + 1
@@ -2662,12 +2202,7 @@ function changeRankPoints(
     amount
 ) {
 
-    const oldRank =
-        getCurrentRank();
-
-
-    rankPoints +=
-        amount;
+    rankPoints += amount;
 
 
     if (
@@ -2694,33 +2229,7 @@ function changeRankPoints(
     );
 
 
-    const newRank =
-        getCurrentRank();
-
-
     updateRankDisplay();
-
-
-    if (
-        oldRank !== newRank
-    ) {
-
-        setTimeout(
-            () => {
-
-                alert(
-                    newRank.icon +
-                    " RANK UP!\n\n" +
-                    "You are now " +
-                    newRank.name +
-                    "!"
-                );
-
-            },
-            300
-        );
-
-    }
 
 }
 
@@ -2760,21 +2269,22 @@ function updateRankDisplay() {
 
     if (next) {
 
-        const needed =
-            next.points -
-            rankPoints;
+        rankProgress.textContent =
+            (
+                next.points -
+                rankPoints
+            ) +
+            " RP until " +
+            next.icon +
+            " " +
+            next.name;
 
+    }
 
-        rankProgress.innerHTML =
-            `${needed} RP until ` +
-            `<span style="color:#ffd84d">` +
-            `${next.icon} ${next.name}` +
-            `</span>`;
+    else {
 
-    } else {
-
-        rankProgress.innerHTML =
-            `⭐ MAXIMUM RANK`;
+        rankProgress.textContent =
+            "⭐ MAXIMUM RANK";
 
     }
 
@@ -2782,7 +2292,7 @@ function updateRankDisplay() {
 
 
 /* =========================================================
-   SHOW RANK
+   RANK MENU
 ========================================================= */
 
 function showRank() {
@@ -2827,7 +2337,9 @@ function showRank() {
             " " +
             next.name;
 
-    } else {
+    }
+
+    else {
 
         text +=
             "\n\n⭐ MAXIMUM RANK!";
@@ -2843,6 +2355,16 @@ function showRank() {
 /* =========================================================
    VOLUME
 ========================================================= */
+
+function updateVolumeButton() {
+
+    volumeBtn.textContent =
+        volumeOn
+        ? "🔊 VOLUME: ON"
+        : "🔇 VOLUME: OFF";
+
+}
+
 
 function toggleVolume() {
 
@@ -2860,26 +2382,6 @@ function toggleVolume() {
 
     updateVolumeButton();
 
-
-    if (volumeOn) {
-
-        playSound(
-            600,
-            .1
-        );
-
-    }
-
-}
-
-
-function updateVolumeButton() {
-
-    volumeBtn.textContent =
-        volumeOn
-        ? "🔊 VOLUME: ON"
-        : "🔇 VOLUME: OFF";
-
 }
 
 
@@ -2892,8 +2394,7 @@ let audioContext = null;
 
 function playSound(
     frequency,
-    duration,
-    type = "sine"
+    duration
 ) {
 
     if (!volumeOn)
@@ -2923,19 +2424,18 @@ function playSound(
                 .createGain();
 
 
-        oscillator.type =
-            type;
-
         oscillator.frequency.value =
             frequency;
 
+
         gain.gain.value =
-            .035;
+            .025;
 
 
         oscillator.connect(
             gain
         );
+
 
         gain.connect(
             audioContext.destination
@@ -2950,7 +2450,9 @@ function playSound(
             duration
         );
 
-    } catch (e) {}
+    }
+
+    catch(e) {}
 
 }
 
@@ -2962,6 +2464,8 @@ function playSound(
 function startGame() {
 
     score = 0;
+
+    lives = MAX_LIVES;
 
     selectedColor = null;
 
@@ -2978,30 +2482,6 @@ function startGame() {
     gameOver = false;
 
 
-    scoreElement.textContent =
-        "0";
-
-
-    progressBar.style.width =
-        "0%";
-
-
-    timerElement.textContent =
-        "10";
-
-
-    eliminationText.innerHTML =
-        "";
-
-
-    question.textContent =
-        "Everyone chooses at the same time!";
-
-
-    message.textContent =
-        "Start the turn when you're ready!";
-
-
     players.forEach(
         player => {
 
@@ -3015,19 +2495,43 @@ function startGame() {
     );
 
 
+    scoreElement.textContent =
+        "0";
+
+
+    progressBar.style.width =
+        "0%";
+
+
+    timerElement.textContent =
+        "10";
+
+
+    timerElement.classList.remove(
+        "warning"
+    );
+
+
+    question.textContent =
+        "Everyone chooses at the same time!";
+
+
+    message.textContent =
+        "Start the turn when you're ready!";
+
+
+    eliminationText.innerHTML =
+        "";
+
+
     resetSelection();
+
+
+    updateLivesDisplay();
 
     updatePassDisplay();
 
     updateLeaderboard();
-
-
-    menuScreen.style.display =
-        "none";
-
-
-    gameScreen.style.display =
-        "block";
 
 
     spinButton.disabled =
@@ -3038,7 +2542,12 @@ function startGame() {
         "▶ START TURN";
 
 
-    updateRankDisplay();
+    menuScreen.style.display =
+        "none";
+
+
+    gameScreen.style.display =
+        "block";
 
 
     playSound(
@@ -3050,14 +2559,10 @@ function startGame() {
 
 
 /* =========================================================
-   RETURN MENU
+   MENU
 ========================================================= */
 
 function returnToMenu() {
-
-    if (spinning)
-        return;
-
 
     if (countdownInterval) {
 
@@ -3065,14 +2570,18 @@ function returnToMenu() {
             countdownInterval
         );
 
+        countdownInterval =
+            null;
+
     }
 
 
     turnActive =
         false;
 
-    gameOver =
-        true;
+
+    spinning =
+        false;
 
 
     menuScreen.style.display =
@@ -3089,15 +2598,14 @@ function returnToMenu() {
 
 
 /* =========================================================
-   CHOOSE COLOR
+   COLOR SELECTION
 ========================================================= */
 
-function chooseColor(
-    color
-) {
+function chooseColor(color) {
 
     if (!turnActive)
         return;
+
 
     if (spinning)
         return;
@@ -3159,8 +2667,10 @@ function useFreePass() {
     if (!turnActive)
         return;
 
+
     if (spinning)
         return;
+
 
     if (!freePassAvailable)
         return;
@@ -3168,6 +2678,7 @@ function useFreePass() {
 
     freePassAvailable =
         false;
+
 
     freePassActive =
         true;
@@ -3179,12 +2690,6 @@ function useFreePass() {
     message.innerHTML =
         "🎟️ <b>FREE PASS ACTIVATED!</b>" +
         "<br>Both colors are correct this turn.";
-
-
-    playSound(
-        800,
-        .15
-    );
 
 }
 
@@ -3199,7 +2704,9 @@ function updatePassDisplay() {
         passButton.disabled =
             false;
 
-    } else {
+    }
+
+    else {
 
         passDisplay.textContent =
             "🎟️ FREE PASS USED";
@@ -3220,6 +2727,7 @@ function startTurn() {
 
     if (turnActive)
         return;
+
 
     if (spinning)
         return;
@@ -3271,7 +2779,7 @@ function startTurn() {
 
     question.textContent =
         playerFinalist
-        ? "⚔️ ELIMINATION ROUND — choose!"
+        ? "⚔️ ELIMINATION ROUND — CHOOSE!"
         : "Choose a color before time runs out!";
 
 
@@ -3284,6 +2792,7 @@ function startTurn() {
             () => {
 
                 countdown--;
+
 
                 timerElement.textContent =
                     countdown;
@@ -3307,6 +2816,10 @@ function startTurn() {
                     clearInterval(
                         countdownInterval
                     );
+
+
+                    countdownInterval =
+                        null;
 
 
                     endChoicePhase();
@@ -3396,7 +2909,7 @@ function endChoicePhase() {
 
 
 /* =========================================================
-   SPIN
+   SPIN WHEEL
 ========================================================= */
 
 function spinWheel() {
@@ -3427,8 +2940,7 @@ function spinWheel() {
 
     playSound(
         250,
-        .3,
-        "square"
+        .25
     );
 
 
@@ -3449,7 +2961,7 @@ function spinWheel() {
 
 
 /* =========================================================
-   RESULT
+   CALCULATE RESULT
 ========================================================= */
 
 function calculateResult() {
@@ -3474,8 +2986,13 @@ function calculateResult() {
         );
 
 
-    if (index < 0)
+    if (
+        index < 0
+    ) {
+
         index = 0;
+
+    }
 
 
     if (
@@ -3501,12 +3018,16 @@ function calculateResult() {
         false;
 
 
+    /* FREE PASS */
+
     if (freePassActive) {
 
         playerCorrect =
             true;
 
-    } else if (selectedColor) {
+    }
+
+    else if (selectedColor) {
 
         playerCorrect =
             selectedColor ===
@@ -3515,20 +3036,21 @@ function calculateResult() {
     }
 
 
-    /* ELIMINATION */
+    /* =====================================================
+       ELIMINATION
+    ====================================================== */
 
     if (playerFinalist) {
 
         if (playerCorrect) {
 
-            playerWins(
-                landedColor,
-                landedNumber
-            );
+            playerWins();
 
             return;
 
-        } else {
+        }
+
+        else {
 
             score = 0;
 
@@ -3541,17 +3063,19 @@ function calculateResult() {
 
 
             message.innerHTML =
-                `❌ You lost the elimination round!` +
-                `<br>The wheel landed on ` +
-                `<b>${landedColor.toUpperCase()}</b>.` +
-                `<br>Your score has reset to 0.`;
+                `❌ <b>ELIMINATION FAILED!</b>
+                <br>The wheel landed on
+                <b>${landedColor.toUpperCase()}</b>.
+                <br>Your score has reset to 0.`;
 
         }
 
     }
 
 
-    /* NORMAL ROUND */
+    /* =====================================================
+       NORMAL TURN
+    ====================================================== */
 
     else {
 
@@ -3561,23 +3085,43 @@ function calculateResult() {
                 landedNumber;
 
 
-            if (score > 100)
-                score = 100;
+            if (
+                score >
+                WIN_SCORE
+            ) {
+
+                score =
+                    WIN_SCORE;
+
+            }
+
+
+            /*
+                IMPORTANT:
+                CORRECT ANSWER RESTORES
+                ALL THREE LIVES.
+            */
+
+            lives =
+                MAX_LIVES;
 
 
             message.innerHTML =
-                freePassActive
+                `✅ <b>CORRECT!</b>
+                <br>+${landedNumber} points!
+                <br>❤️ Lives restored to 3!`;
 
-                ? `🎟️ <b>FREE PASS!</b>` +
-                  `<br>+${landedNumber} points!`
 
-                : `✅ <b>CORRECT!</b>` +
-                  `<br>+${landedNumber} points!`;
-
+            /* REACHED 50 */
 
             if (
-                score >= 100
+                score >=
+                WIN_SCORE
             ) {
+
+                score =
+                    WIN_SCORE;
+
 
                 playerFinalist =
                     true;
@@ -3588,23 +3132,67 @@ function calculateResult() {
                         ⚔️ ELIMINATION ROUND
                     </div>`;
 
+
+                question.textContent =
+                    "⚔️ You reached 50! Survive the elimination spin!";
+
+
+                message.innerHTML =
+                    `🔥 <b>50 POINTS!</b>
+                    <br>You must survive the elimination round!`;
+
             }
 
-        } else {
+        }
 
-            score = 0;
+        else {
+
+            lives--;
 
 
-            message.innerHTML =
-                `❌ <b>WRONG!</b>` +
-                `<br>The wheel landed on ` +
-                `<b>${landedColor.toUpperCase()}</b>.` +
-                `<br>Your score reset to 0.`;
+            if (
+                lives > 0
+            ) {
+
+                message.innerHTML =
+                    `❌ <b>WRONG!</b>
+                    <br>The wheel landed on
+                    <b>${landedColor.toUpperCase()}</b>.
+                    <br>❤️ ${lives}
+                    ${lives === 1 ? "life" : "lives"}
+                    remaining.`;
+
+            }
+
+            else {
+
+                score = 0;
+
+                playerFinalist =
+                    false;
+
+                gameOver =
+                    true;
+
+
+                changeRankPoints(
+                    -RANK_LOSS_POINTS
+                );
+
+
+                message.innerHTML =
+                    `💀 <b>OUT OF LIVES!</b>
+                    <br>Your score has reset to 0.
+                    <br>-${RANK_LOSS_POINTS} Rank Points`;
+
+            }
 
         }
 
     }
 
+
+    /* NPCs */
 
     processNPCResults(
         landedColor,
@@ -3612,16 +3200,24 @@ function calculateResult() {
     );
 
 
+    /* FREE PASS IS CONSUMED */
+
     freePassActive =
         false;
 
+
+    /* UPDATE UI */
 
     scoreElement.textContent =
         score;
 
 
     progressBar.style.width =
-        score + "%";
+        (
+            score /
+            WIN_SCORE *
+            100
+        ) + "%";
 
 
     selectedColor =
@@ -3642,12 +3238,40 @@ function calculateResult() {
 
     updatePassDisplay();
 
+    updateLivesDisplay();
+
     updateLeaderboard();
 
 
-    if (gameOver)
+    /* OUT OF LIVES */
+
+    if (gameOver) {
+
+        setTimeout(
+            () => {
+
+                alert(
+                    "💀 OUT OF LIVES!\n\n" +
+                    "Your score has reset to 0.\n\n" +
+                    "-" +
+                    RANK_LOSS_POINTS +
+                    " Rank Points"
+                );
+
+
+                returnToMenu();
+
+            },
+            1800
+        );
+
+
         return;
 
+    }
+
+
+    /* NEXT TURN */
 
     setTimeout(
         prepareNextTurn,
@@ -3669,6 +3293,9 @@ function processNPCResults(
     players.forEach(
         player => {
 
+
+            /* NPC FINALIST */
+
             if (
                 player.finalist
             ) {
@@ -3678,13 +3305,15 @@ function processNPCResults(
                     landedColor
                 ) {
 
-                    npcWins(
-                        player
-                    );
+                    player.finalist =
+                        false;
 
-                    return;
+                    player.score =
+                        WIN_SCORE;
 
-                } else {
+                }
+
+                else {
 
                     player.score =
                         0;
@@ -3699,6 +3328,8 @@ function processNPCResults(
             }
 
 
+            /* NORMAL NPC */
+
             if (
                 player.guess ===
                 landedColor
@@ -3709,18 +3340,21 @@ function processNPCResults(
 
 
                 if (
-                    player.score >= 100
+                    player.score >=
+                    WIN_SCORE
                 ) {
 
                     player.score =
-                        100;
+                        WIN_SCORE;
 
                     player.finalist =
                         true;
 
                 }
 
-            } else {
+            }
+
+            else {
 
                 player.score =
                     0;
@@ -3759,7 +3393,7 @@ function prepareNextTurn() {
 
     message.innerHTML =
         playerFinalist
-        ? "🔥 You reached 100! Survive the next spin!"
+        ? "🔥 You reached 50! Survive the next spin!"
         : "👥 Ready for the next turn?";
 
 
@@ -3772,10 +3406,7 @@ function prepareNextTurn() {
    PLAYER WIN
 ========================================================= */
 
-function playerWins(
-    landedColor,
-    landedNumber
-) {
+function playerWins() {
 
     gameOver =
         true;
@@ -3808,9 +3439,9 @@ function playerWins(
 
 
     message.innerHTML =
-        `🏆 <b>YOU WIN!</b>` +
-        `<br>+${RANK_WIN_POINTS} Rank Points` +
-        `<br>Total wins: ${wins}`;
+        `🏆 <b>YOU WIN!</b>
+        <br>+${RANK_WIN_POINTS} Rank Points
+        <br>Total wins: ${wins}`;
 
 
     eliminationText.innerHTML =
@@ -3861,75 +3492,7 @@ function playerWins(
 
 
 /* =========================================================
-   NPC WIN
-========================================================= */
-
-function npcWins(
-    player
-) {
-
-    gameOver =
-        true;
-
-
-    player.wins++;
-
-
-    changeRankPoints(
-        -RANK_LOSS_POINTS
-    );
-
-
-    spinButton.disabled =
-        true;
-
-
-    passButton.disabled =
-        true;
-
-
-    message.innerHTML =
-        `🏆 <b>${player.name} WINS!</b>` +
-        `<br>-${RANK_LOSS_POINTS} Rank Points`;
-
-
-    eliminationText.innerHTML =
-        `<div class="elimination">
-            🏆 ${player.name.toUpperCase()} WINS!
-        </div>`;
-
-
-    question.textContent =
-        "The round is over!";
-
-
-    updateLeaderboard();
-
-
-    setTimeout(
-        () => {
-
-            alert(
-                "🏆 " +
-                player.name +
-                " WINS!\n\n" +
-                "-" +
-                RANK_LOSS_POINTS +
-                " Rank Points"
-            );
-
-
-            returnToMenu();
-
-        },
-        1300
-    );
-
-}
-
-
-/* =========================================================
-   RESET SELECTION
+   RESET COLOR SELECTION
 ========================================================= */
 
 function resetSelection() {
@@ -4030,8 +3593,7 @@ function updateLeaderboard() {
             }
 
 
-            let medal =
-                "";
+            let medal = "";
 
 
             if (
@@ -4039,10 +3601,12 @@ function updateLeaderboard() {
             )
                 medal = "🥇";
 
+
             else if (
                 index === 1
             )
                 medal = "🥈";
+
 
             else if (
                 index === 2
@@ -4067,7 +3631,6 @@ function updateLeaderboard() {
 
                 </div>
 
-
                 <div class="name">
 
                     ${
@@ -4081,7 +3644,6 @@ function updateLeaderboard() {
                     ${status}
 
                 </div>
-
 
                 <div class="points">
 
@@ -4112,6 +3674,8 @@ updateRankDisplay();
 
 updateLeaderboard();
 
+updateLivesDisplay();
+
 
 menuScreen.style.display =
     "flex";
@@ -4123,4 +3687,5 @@ gameScreen.style.display =
 </script>
 
 </body>
+
 </html>
